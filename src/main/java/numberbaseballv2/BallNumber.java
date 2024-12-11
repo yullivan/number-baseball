@@ -22,4 +22,14 @@ public class BallNumber {
     public int getValue() {
         return value;
     }
+
+    public MatchResult match(BallNumber other) {
+        if (this.position == other.position && this.value == other.value) {
+            return MatchResult.STRIKE;
+        }
+        if (this.value == other.value) {
+            return MatchResult.BALL;
+        }
+        return MatchResult.NOTHING;
+    }
 }

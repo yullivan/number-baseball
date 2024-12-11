@@ -1,7 +1,9 @@
 package numberbaseballv2;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class BallNumbers {
     List<BallNumber> numbers = new ArrayList<>();
@@ -28,20 +30,39 @@ public class BallNumbers {
         return MatchResult.NOTHING;
     }
 
-    List<Integer> match(BallNumbers other) {
+    GameResult match(BallNumbers other) {
+//        int strikeCount = 0;
+//        int ballCount = 0;
+//        for (BallNumber ballNumber1 : this.numbers) {
+//            for (BallNumber ballNumber2 : other.numbers) {
+//                MatchResult 비교결과 = ballNumber1.match(ballNumber2);
+//                if (비교결과 == MatchResult.STRIKE) {
+//                    strikeCount += 1;
+//                } else if (비교결과 == MatchResult.BALL) {
+//                    ballCount += 1;
+//                }
+//            }
+//        }
+//        return List.of(strikeCount, ballCount);
+
         int strikeCount = 0;
         int ballCount = 0;
-        for (BallNumber ballNumber1 : this.numbers) {
-            for (BallNumber ballNumber2 : other.numbers) {
-                MatchResult 비교결과 = ballNumber1.match(ballNumber2);
-                if (비교결과 == MatchResult.STRIKE) {
-                    strikeCount += 1;
-                } else if (비교결과 == MatchResult.BALL) {
-                    ballCount += 1;
-                }
+        for (BallNumber thisBallNumber : numbers) {
+            MatchResult matchResult = other.match(thisBallNumber);
+            if (matchResult == MatchResult.STRIKE) {
+                strikeCount = strikeCount + 1;
+            }
+            if (matchResult == MatchResult.BALL) {
+                ballCount = ballCount + 1;
             }
         }
 
-        return List.of(strikeCount, ballCount);
+        // 1. 결과 운반을 위해 Map을 사용
+//        HashMap<String, Integer> gameResult = new HashMap<>();
+//        gameResult.put(Constants.STRIKE, strikeCount);
+//        gameResult.put("ball", ballCount);
+//        return gameResult;
+        // 2. 결과 운반을 위해 GameResult 오브젝트를 사용
+        return new GameResult(strikeCount, ballCount);
     }
 }

@@ -25,4 +25,8 @@ public class GameResult {
             ballCount = ballCount + 1;
         }
     }
+
+    public boolean isGameOver() {
+        return strikeCount == 3;
+    }
 }

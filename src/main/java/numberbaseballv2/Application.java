@@ -4,10 +4,17 @@ public class Application {
 
     public static void main(String[] args) {
         BallNumbers computerBallNumbers = new BallNumbers(GameController.getComputerBallNumberList());
-        BallNumbers userBallNumbers = new BallNumbers(GameController.getUserBallNumberList());
 
-        GameResult gameResult = computerBallNumbers.match(userBallNumbers);
+        while (true) {
+            BallNumbers userBallNumbers = new BallNumbers(GameController.getUserBallNumberList());
 
-        GameController.print(gameResult);
+            GameResult gameResult = computerBallNumbers.match(userBallNumbers);
+
+            GameController.print(gameResult);
+
+            if (gameResult.isGameOver()) {
+                break;
+            }
+        }
     }
 }

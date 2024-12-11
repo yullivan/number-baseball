@@ -45,16 +45,12 @@ public class BallNumbers {
 //        }
 //        return List.of(strikeCount, ballCount);
 
+        GameResult gameResult = new GameResult(0, 0);
         int strikeCount = 0;
         int ballCount = 0;
         for (BallNumber thisBallNumber : numbers) {
             MatchResult matchResult = other.match(thisBallNumber);
-            if (matchResult == MatchResult.STRIKE) {
-                strikeCount = strikeCount + 1;
-            }
-            if (matchResult == MatchResult.BALL) {
-                ballCount = ballCount + 1;
-            }
+            gameResult.count(matchResult);
         }
 
         // 1. 결과 운반을 위해 Map을 사용
@@ -62,7 +58,11 @@ public class BallNumbers {
 //        gameResult.put(Constants.STRIKE, strikeCount);
 //        gameResult.put("ball", ballCount);
 //        return gameResult;
+
         // 2. 결과 운반을 위해 GameResult 오브젝트를 사용
-        return new GameResult(strikeCount, ballCount);
+//        return new GameResult(strikeCount, ballCount);
+
+        // 3. GameResult에게 짬처리
+        return gameResult;
     }
 }

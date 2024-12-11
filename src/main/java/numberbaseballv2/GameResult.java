@@ -16,4 +16,13 @@ public class GameResult {
     public int getBallCount() {
         return ballCount;
     }
+
+    public void count(MatchResult matchResult) {
+        if (matchResult == MatchResult.STRIKE) {
+            strikeCount = strikeCount + 1;
+        }
+        if (matchResult == MatchResult.BALL) {
+            ballCount = ballCount + 1;
+        }
+    }
 }
